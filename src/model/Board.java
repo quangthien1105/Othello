@@ -32,13 +32,13 @@ public class Board {
     }
     // kiem tra duong di
     public boolean isValidMove(int player, int r, int c) {
-        // 1. Kiểm tra cơ bản: Trong bàn cờ và ô đó phải trống
+        //
         if (r < 0 || r >= SIZE || c < 0 || c >= SIZE) return false;
         if (grid[r][c] != EMPTY) return false;
 
         int opponent = (player == BLACK) ? WHITE : BLACK;
 
-        // 2. Duyệt 8 hướng xung quanh (Ngang, Dọc, Chéo)
+        //  (Ngang, Dọc, Chéo)
         int[] dx = {-1, -1, -1, 0, 0, 1, 1, 1};
         int[] dy = {-1, 0, 1, -1, 1, -1, 0, 1};
 
