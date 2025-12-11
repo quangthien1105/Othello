@@ -52,20 +52,20 @@ public class Board {
                 if (grid[x][y] == opponent) {
                     hasOpponentBetween = true; // Gặp quân địch
                 } else if (grid[x][y] == player) {
-                    // Gặp quân mình -> Nếu ở giữa có quân địch thì HỢP LỆ
+                   // quan dich co o giua quan mink
                     if (hasOpponentBetween) return true;
-                    else break; // Hai quân mình đứng sát nhau -> Không kẹp được gì
+                    else break; // 2 quan giong nhau ke ben
                 } else {
-                    break; // Gặp ô trống -> Hỏng
+                    break;// gap o chong
                 }
                 x += dx[i];
                 y += dy[i];
             }
         }
-        return false; // Không kẹp được quân nào ở cả 8 hướng
+        return false; // khong bi kep
     }
 
-    // --- 3. THỰC HIỆN NƯỚC ĐI & LẬT CỜ ---
+    // --- Lat co ---
     public void makeMove(int player, int r, int c) {
         // Đặt quân mới xuống
         grid[r][c] = player;
@@ -82,9 +82,9 @@ public class Board {
 
             while (x >= 0 && x < SIZE && y >= 0 && y < SIZE) {
                 if (grid[x][y] == opponent) {
-                    disksToFlip.add(new int[]{x, y}); // Lưu tọa độ quân địch để chuẩn bị lật
+                    disksToFlip.add(new int[]{x, y}); // Lưu tọa độ quân địch
                 } else if (grid[x][y] == player) {
-                    // Gặp quân mình -> LẬT TẤT CẢ các quân địch đã lưu
+                    // Gặp quân mình --> lat quan co cua dich
                     for (int[] pos : disksToFlip) {
                         grid[pos[0]][pos[1]] = player;
                     }
@@ -98,8 +98,8 @@ public class Board {
         }
     }
 
-    // --- 4. HỖ TRỢ AI ---
-    // Lấy danh sách tất cả các nước đi hợp lệ
+    // ---AI ---
+
     public List<int[]> getAvailableMoves(int player) {
         List<int[]> moves = new ArrayList<>();
         for (int i = 0; i < SIZE; i++) {
@@ -112,13 +112,12 @@ public class Board {
         return moves;
     }
 
-    // --- 5. TRẠNG THÁI GAME ---
+    // --- TRANG THAI GAME ---
     public boolean isGameOver() {
-        // Game over khi cả Đen và Trắng đều không còn nước đi
         return getAvailableMoves(BLACK).isEmpty() && getAvailableMoves(WHITE).isEmpty();
     }
 
-    // Đếm điểm (trả về mảng: index 0 là điểm Đen, index 1 là điểm Trắng)
+    // Đếm điểm
     public int[] getScore() {
         int blackScore = 0;
         int whiteScore = 0;

@@ -1,7 +1,7 @@
 package model;
 
 public abstract class Player {
-    protected String name; //(VD: "Máy tính", "Bạn")
+    protected String name;
     protected int color;   // 1 = Đen, 2 = Trắng
 
     public Player(String name, int color) {
@@ -19,5 +19,5 @@ public abstract class Player {
     public String getName() {
         return name;
     }
-    public abstract int[] getMove(Board board);
+    public abstract int[] makeMove(Board board);
 }
